@@ -45,3 +45,7 @@ output "cluster_id" {
     substr(random_id.cluster_id.hex, 20, 12)
   )}"
 }
+
+output "kube_apiserver_url" {
+  value = "${kube_apiserver_url}"
+}
