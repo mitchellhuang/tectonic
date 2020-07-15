@@ -40,7 +40,7 @@ module "identity_certs" {
 }
 
 module "opa_certs" {
-  source = "../../modules/tls/opa/self-signed"
+  source  = "../../modules/tls/opa/self-signed"
 
   ca_cert_pem     = "${module.kube_certs.ca_cert_pem}"
   ca_key_alg      = "${module.kube_certs.ca_key_alg}"
