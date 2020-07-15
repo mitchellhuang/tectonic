@@ -608,3 +608,45 @@ Global proxy settings will not be affected in this case.
 When set to false, the proxy settings will apply globally, including to all processes lauched by users.
 EOF
 }
+
+variable "opa_ca_cert" {
+  type    = "string"
+  default = ""
+
+  description = <<EOF
+(optional) The content of the PEM-encoded CA certificate, used to generate OPA server certificate.
+If left blank, a CA certificate will be automatically generated.
+EOF
+}
+
+variable "opa_ca_key" {
+  type    = "string"
+  default = ""
+
+  description = <<EOF
+(optional) The content of the PEM-encoded CA key, used to generate OPA server certificate.
+This field is mandatory if `tectonic_ca_cert` is set.
+EOF
+}
+
+variable "opa_ca_key_alg" {
+  type    = "string"
+  default = "RSA"
+
+  description = <<EOF
+(optional) The algorithm used to generate opa_ca_key.
+The default value is currently recommended.
+This field is mandatory if `opa_ca_cert` is set.
+EOF
+}
+
+variable "opa_tls_validity_period" {
+  type    = "string"
+  default = "26280"
+
+  description = <<EOF
+Validity period of the self-signed certificates (in hours).
+Default is 3 years.
+This setting is ignored if user provided certificates are used.
+EOF
+}

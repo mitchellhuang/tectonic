@@ -16,9 +16,9 @@ resource "tls_cert_request" "opa" {
 resource "tls_locally_signed_cert" "opa" {
   cert_request_pem = "${tls_cert_request.opa.cert_request_pem}"
 
-  ca_key_algorithm      = "${var.ca_key_alg}"
-  ca_private_key_pem    = "${var.ca_key_pem}"
-  ca_cert_pem           = "${var.ca_cert_pem}"
+  ca_key_algorithm      = "${var.ca_cert_pem == "" ? join(" ", tls_self_signed_cert.opa_ca.*.key_algorithm) : var.ca_key_alg}"
+  ca_private_key_pem    = "${var.ca_cert_pem == "" ? join(" ", tls_private_key.opa_ca.*.private_key_pem) : var.ca_key_pem}"
+  ca_cert_pem           = "${var.ca_cert_pem == "" ? join(" ", tls_self_signed_cert.opa_ca.*.cert_pem): var.ca_cert_pem}"
   validity_period_hours = "${var.validity_period}"
 
   allowed_uses = [

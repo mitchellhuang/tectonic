@@ -42,8 +42,8 @@ module "identity_certs" {
 module "opa_certs" {
   source  = "../../modules/tls/opa/self-signed"
 
-  ca_cert_pem     = "${module.kube_certs.ca_cert_pem}"
-  ca_key_alg      = "${module.kube_certs.ca_key_alg}"
-  ca_key_pem      = "${module.kube_certs.ca_key_pem}"
-  validity_period = "${var.tectonic_tls_validity_period}"
+  ca_cert_pem        = "${var.opa_ca_cert}"
+  ca_key_alg         = "${var.opa_ca_key_alg}"
+  ca_key_pem         = "${var.opa_ca_key}"
+  validity_period    = "${var.opa_tls_validity_period}"
 }
