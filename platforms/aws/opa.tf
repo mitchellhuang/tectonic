@@ -3,6 +3,7 @@ module "opa" {
 
   cert_pem = "${module.opa_certs.cert_pem}"
   key_pem  = "${module.opa_certs.key_pem}"
+  ca_cert_pem = "placeholder"
 }
 
 provider "kubernetes" {

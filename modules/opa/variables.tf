@@ -5,3 +5,7 @@ variable "cert_pem" {
 variable "key_pem" {
   type = "string"
 }
+
+variable "ca_cert_pem" {
+  type = "string"
+}
